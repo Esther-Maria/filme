@@ -5,7 +5,8 @@
 
   <form action="{{url('genero/salvar')}}" method="post">
     @csrf
-    <div class="mb-3 @if($genero->id == 0) d-none @endif">
+    <!-- @if($genero->id == 0) d-none @endif -->
+    <div class="mb-3 ">
       <label for="id" class="form-label">ID</label>
       <input readonly class="form-control" type="text" name="id" value="{{$genero->id}}">
     </div>

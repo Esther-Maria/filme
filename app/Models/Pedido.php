@@ -12,6 +12,7 @@ class Pedido extends Model
 {
     use HasFactory;
     protected $table = 'pedidos';
+  
     public $timestamps = false;
 
     public function cliente(): BelongsTo

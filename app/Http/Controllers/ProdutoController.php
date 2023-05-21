@@ -41,7 +41,7 @@ class ProdutoController extends Controller
         }
 
         $produto->nome = $request->input('nome');
-        $produto->descricao = $request->input('descricao');
+        $produto->preco = $request->input('preco');
         $produto->save();
 
         return redirect('produto/listar');

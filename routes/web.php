@@ -17,6 +17,7 @@ Route::get('/pedido/novo', [PedidoController::class, 'novo']);
 Route::get('/pedido/editar/{id}', [PedidoController::class, 'editar']);
 Route::get('/pedido/excluir/{id}', [PedidoController::class, 'excluir']);
 Route::post('/pedido/salvar', [PedidoController::class, 'salvar']);
+Route::get('pedido/{id}/detalhes', 'PedidoController@detalhes')->name('pedido.detalhes');
 
 Route::get('/cliente/listar', [ClienteController::class, 'listar']);
 Route::get('/cliente/novo', [ClienteController::class, 'novo']);
@@ -29,10 +30,3 @@ Route::get('/produto/novo', [ProdutoController::class, 'novo']);
 Route::get('/produto/editar/{id}', [ProdutoController::class, 'editar']);
 Route::get('/produto/excluir/{id}', [ProdutoController::class, 'excluir']);
 Route::post('/produto/salvar', [ProdutoController::class, 'salvar']);
-
-Route::get('/itempedido/listar', [ItemPedidoController::class, 'listar']);
-Route::get('/itempedido/novo', [ItemPedidoController::class, 'novo']);
-Route::get('/itempedido/editar/{id}', [ItemPedidoController::class, 'editar']);
-Route::get('/itempedido/excluir/{id}', [ItemPedidoController::class,'excluir']);
-Route::post('/itempedido/salvar', [ItemPedidoController::class, 'salvar']);
-

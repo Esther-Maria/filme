@@ -10,6 +10,8 @@
         <th>ID</th>
         <th>Nome</th>
         <th>Preço</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +20,8 @@
         <td>{{ $produto->id }}</td>
         <td>{{ $produto->nome }}</td>
         <td>{{ $produto->preco }}</td>
+        <td><a class='btn btn-primary' href='editar/{{$produto->id}}'>+</a></td>
+        <td><a class='btn btn-danger' href='excluir/{{$produto->id}}'>-</a></td>
       </tr>
       @endforeach
     </tbody>

@@ -8,21 +8,24 @@
       <tr>
         <th>ID</th>
         <th>Cliente</th>
-        <th>Descrição</th>
+        <th>Observação do cliente</th>
         <th></th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      @foreach($pedidos as $pedido)
+    @foreach($pedidos as $pedido)
         <tr>
           <td>{{$pedido->id}}</td>
           <td>{{$pedido->cliente->nome}}</td>
-          <td>{{$pedido->desc   ricao}}</td>
-          <td><a class="btn btn-primary" href="{{url('pedido/editar/'.$pedido->id)}}">Editar</a></td>
-          <td><a class="btn btn-danger" href="{{url('pedido/excluir/'.$pedido->id)}}">Excluir</a></td>
+          <td>{{$pedido->descricao}}</td>
+
+            <td><a class="btn btn-success" href="{{url('pedido/detalhes/'.$pedido->id)}}">Detalhes</a></td>
+            <td><a class="btn btn-primary" href="{{url('pedido/editar/'.$pedido->id)}}">Editar</a></td>
+            <td><a class="btn btn-danger" href="{{url('pedido/excluir/'.$pedido->id)}}">Excluir</a></td>
+
         </tr>
-      @endforeach
+    @endforeach
     </tbody>
   </table>
 @endsection

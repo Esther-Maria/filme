@@ -13,16 +13,10 @@ class FilmeController extends Controller
     public function listar()
     {
         $filmes = Filme::orderBy('titulo')->get();
-        foreach ($filmes as $filme) {
-            if ($filme->imagem) {
-                $filme->urlImagem = Storage::url($filme->imagem);
-            }
-        }
-
         return view('listagemFilme', compact('filmes'));
     }
 
-    public function novo()
+    public function novo(Request $request)
     {
         $filme = new Filme();
         $filme->id = 0;
@@ -30,9 +24,19 @@ class FilmeController extends Controller
         $filme->ano = null;
         $filme->diretor_id = null;
         $filme->genero_id = null;
-
+        if ($request->hasFile('arquivo')) {
+            $file = $request->file('arquivo');
+            $upload = $file->store('public/imagens');
+            $upload = explode("/", $upload);
+            $tamanho = sizeof($upload);
+            if ($filme->imagem != "") {
+              Storage::delete("public/imagens/".$filme->imagem);
+            }
+            $filme->imagem = $upload[$tamanho-1];
+        }
         $diretores = Diretor::all();
         $generos = Genero::all();
+
 
         return view('frmFilme', compact('filme', 'diretores', 'generos'));
     }
@@ -51,11 +55,16 @@ class FilmeController extends Controller
         $filme->genero_id = $request->input('genero_id');
 
         if ($request->hasFile('arquivo')) {
-            $arquivo = $request->file('arquivo');
-            $nomeArquivo = uniqid() . '.' . $arquivo->getClientOriginalExtension();
-            $arquivo->storeAs('public/imagens', $nomeArquivo);
-            $filme->imagem = 'imagens/' . $nomeArquivo;
+            $file = $request->file('arquivo');
+            $upload = $file->store('public/imagens');
+            $upload = explode("/", $upload);
+            $tamanho = sizeof($upload);
+            if ($filme->imagem != "") {
+              Storage::delete("public/imagens/".$filme->imagem);
+            }
+            $filme->imagem = $upload[$tamanho-1];
         }
+
         $filme->save();
         return redirect('filme/listar');
     }
@@ -73,7 +82,9 @@ class FilmeController extends Controller
     public function excluir($id)
     {
         $filme = Filme::find($id);
-
+        if ($filme->imagem != "") {
+            Storage::delete("public/imagens/".$filme->imagem);
+          }
         try {
             $filme->delete();
         } catch (\Exception $e) {

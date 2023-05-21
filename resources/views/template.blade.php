@@ -169,13 +169,13 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{url('cliente/listar')}}">Cliente</a>
+          <a class="nav-link active" aria-current="page" href="{{url('filme/listar')}}">Filmes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{url('produto/listar')}}">Produtos</a>
+          <a class="nav-link active" aria-current="page" href="{{url('genero/listar')}}">Genêros</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{url('pedido/listar')}}">Pedidos</a>
+          <a class="nav-link active" aria-current="page" href="{{url('diretor/listar')}}">Diretores</a>
         </li>
       </ul>
     </div>

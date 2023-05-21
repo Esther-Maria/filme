@@ -1,42 +1,48 @@
--- Tabela "Clientes"
-CREATE TABLE clientes (
-  id INT PRIMARY KEY AUTO_INCREMENT,
+
+
+-- Tabela "Diretor"
+CREATE TABLE diretor (
+  id INT AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(255),
-  email VARCHAR(255)
+  nacionalidade VARCHAR(255)
 );
 
--- Tabela "Pedidos"
-CREATE TABLE pedidos (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  cliente_id INT,
-  descricao VARCHAR(255),
-  FOREIGN KEY (cliente_id) REFERENCES clientes(id)
+-- Tabela "Genero"
+CREATE TABLE genero (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  descricao VARCHAR(255)
 );
 
--- Tabela "Produtos"
-CREATE TABLE produtos (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  nome VARCHAR(255),
-  preco DECIMAL(8, 2)
+-- Tabela "Filme"
+
+CREATE TABLE filme (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  titulo VARCHAR(255),
+  ano INT,
+  diretor_id INT,
+  genero_id INT,
+  imagem VARCHAR(255),
+  FOREIGN KEY (diretor_id) REFERENCES Diretor(id),
+  FOREIGN KEY (genero_id) REFERENCES Genero(id)
 );
 
--- Tabela "Itens do Pedido"
-CREATE TABLE itens_do_pedido (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  pedido_id INT,
-  produto_id INT,
-  quantidade INT,
-  FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
-  FOREIGN KEY (produto_id) REFERENCES produtos(id)
-);
--- Inserção na tabela "Clientes"
-INSERT INTO clientes (nome, email) VALUES ('João Silva', 'joao@example.com');
+-- Inserção de dados na tabela "Diretor"
+INSERT INTO diretor (nome, nacionalidade)
+VALUES ('Francis Ford Coppola', 'Estados Unidos');
 
--- Inserção na tabela "Pedidos"
-INSERT INTO pedidos (cliente_id, descricao) VALUES (1, 'Pedido 1');
+INSERT INTO diretor (nome, nacionalidade)
+VALUES ('Quentin Tarantino', 'Estados Unidos');
 
--- Inserção na tabela "Produtos"
-INSERT INTO produtos (nome, preco) VALUES ('Produto A', 10.99);
+-- Inserção de dados na tabela "Genero"
+INSERT INTO genero (descricao)
+VALUES ('Crime');
 
--- Inserção na tabela "Itens do Pedido"
-INSERT INTO itens_do_pedido (pedido_id, produto_id, quantidade) VALUES (1, 1, 2);
+INSERT INTO genero (descricao)
+VALUES ('Drama');
+
+-- Inserção de dados na tabela "Filme"
+INSERT INTO filme (titulo, ano, diretor_id, genero_id, imagem)
+VALUES ('O Poderoso Chefão', 1972, 1, 1, 'imagem1.jpg');
+
+INSERT INTO filme (titulo, ano, diretor_id, genero_id, imagem)
+VALUES ('Pulp Fiction', 1994, 2, 2, 'imagem2.jpg');

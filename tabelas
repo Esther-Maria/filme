@@ -1,0 +1,42 @@
+-- Tabela "Clientes"
+CREATE TABLE clientes (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(255),
+  email VARCHAR(255)
+);
+
+-- Tabela "Pedidos"
+CREATE TABLE pedidos (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  cliente_id INT,
+  descricao VARCHAR(255),
+  FOREIGN KEY (cliente_id) REFERENCES clientes(id)
+);
+
+-- Tabela "Produtos"
+CREATE TABLE produtos (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(255),
+  preco DECIMAL(8, 2)
+);
+
+-- Tabela "Itens do Pedido"
+CREATE TABLE itens_do_pedido (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  pedido_id INT,
+  produto_id INT,
+  quantidade INT,
+  FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
+  FOREIGN KEY (produto_id) REFERENCES produtos(id)
+);
+-- Inserção na tabela "Clientes"
+INSERT INTO clientes (nome, email) VALUES ('João Silva', 'joao@example.com');
+
+-- Inserção na tabela "Pedidos"
+INSERT INTO pedidos (cliente_id, descricao) VALUES (1, 'Pedido 1');
+
+-- Inserção na tabela "Produtos"
+INSERT INTO produtos (nome, preco) VALUES ('Produto A', 10.99);
+
+-- Inserção na tabela "Itens do Pedido"
+INSERT INTO itens_do_pedido (pedido_id, produto_id, quantidade) VALUES (1, 1, 2);

@@ -47,10 +47,10 @@
           <div class="alert alert-danger">{{ $message }}</div>
       @enderror
     </div>
-    <!-- <div class="mb-3">
+    <div class="mb-3">
       <label for="arquivo" class="form-label">Imagem</label>
       <input class="form-control" type="file" name="arquivo" accept="image/*">
-    </div> -->
+    </div>
 
 <button class="btn btn-primary" type="submit" name="button">Salvar</button>
   </form>

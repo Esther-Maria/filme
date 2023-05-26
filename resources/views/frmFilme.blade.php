@@ -15,9 +15,8 @@
     <div class="mb-3">
       <label for="titulo" class="form-label">Título</label>
       <input class="form-control @error('titulo') is-invalid @enderror" type="text" name="titulo" value="{{old('titulo', $filme->titulo)}}">
-      @error('titulo')
-          <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
+
+
     </div>
     <div class="mb-3">
       <label for="ano" class="form-label">Ano</label>
@@ -48,10 +47,10 @@
           <div class="alert alert-danger">{{ $message }}</div>
       @enderror
     </div>
-    <div class="mb-3">
+    <!-- <div class="mb-3">
       <label for="arquivo" class="form-label">Imagem</label>
       <input class="form-control" type="file" name="arquivo" accept="image/*">
-    </div>
+    </div> -->
 
 <button class="btn btn-primary" type="submit" name="button">Salvar</button>
   </form>
